@@ -8,3 +8,8 @@ export interface AuthResponse {
   userId: string;
   expiresIn: number;
 }
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
