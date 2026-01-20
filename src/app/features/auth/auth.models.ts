@@ -1,8 +1,6 @@
 export interface RegisterRequest {
   username: string;
-  email: string;
   password: string;
-  currency?: string; 
 }
 
 export interface AuthResponse {

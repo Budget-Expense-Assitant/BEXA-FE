@@ -1,7 +1,8 @@
+// src/app/core/services/auth.service.ts
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RegisterRequest, AuthResponse } from '../../features/auth/auth.models';
+import { RegisterRequest, AuthResponse} from '../../features/auth/auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,11 @@ import { RegisterRequest, AuthResponse } from '../../features/auth/auth.models';
 export class AuthService {
   private readonly http = inject(HttpClient);
   
-  // Base URL am besten in die environment files auslagern
-  private readonly API_URL = 'http://localhost:8080/api/v1/auth'; 
+  // UserApi Controller (@RequestMapping("/api/v1/users"))
+  private readonly API_URL = 'http://localhost:8080/api/v1/users'; 
 
-  /*
-   * Registriert einen neuen User.
-   * POST request.
-   */
   register(payload: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API_URL}/register`, payload);
+    // Post auf /create endpoint
+    return this.http.post<AuthResponse>(`${this.API_URL}/create`, payload);
   }
 }
