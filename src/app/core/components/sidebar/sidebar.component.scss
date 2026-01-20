@@ -1,28 +1,43 @@
+:host {
+  display: block;
+}
+
 .sidebar {
-  width: 260px;
-  height: 100vh;
+  width: 240px;
+  height: calc(100vh - 120px); 
+  
   background: white;
-  border-radius: 0 24px 24px 0;
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.03);
-  padding: 24px;
-  margin: 20px;
   border-radius: 20px;
-  position: fixed;
+  padding: 20px 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+  overflow-y: auto; 
 }
 
 .nav-item {
   display: flex;
   align-items: center;
+  gap: 12px;
   padding: 12px 16px;
-  border-radius: 12px;
   color: #6F767E;
   text-decoration: none;
-  margin-bottom: 8px;
-  transition: all 0.2s;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  .material-icons-outlined {
+    font-size: 22px;
+  }
 
   &.active {
-    background: #5D5CDE;
+    background-color: #5D5CDE;
     color: white;
-    box-shadow: 0 8px 16px rgba(93, 92, 222, 0.2);
+    box-shadow: 0 10px 20px rgba(93, 92, 222, 0.2);
+
+    .material-icons-outlined { color: white; }
   }
 }
