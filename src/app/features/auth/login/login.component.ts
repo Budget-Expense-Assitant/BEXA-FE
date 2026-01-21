@@ -18,8 +18,8 @@ export class LoginComponent {
   private router = inject(Router);
 
   loginForm = this.fb.nonNullable.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]]
+    username: ['', [Validators.required, Validators.minLength(3)]], 
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   errorMessage = signal('');

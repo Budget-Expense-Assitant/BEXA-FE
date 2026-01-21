@@ -1,0 +1,31 @@
+.chart-container-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.resize-handle {
+  // Das ist der Magic Trick:
+  resize: both;       // Erlaubt ziehen in beide Richtungen
+  overflow: hidden;   // Nötig damit resize funktioniert
+  
+  width: 100%;        // Startbreite
+  height: 400px;      // Starthöhe
+  min-width: 300px;   // Minimum
+  min-height: 200px;
+  max-width: 100%;
+  
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem; // Rounded-xl
+  padding: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+// Damit das Canvas immer den Container ausfüllt
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
