@@ -1,1 +1,89 @@
-<p>expenses works!</p>
+<div class="expenses-container">
+  <div class="header">
+    <div class="header-text">
+      <h1>Ausgaben verwalten</h1>
+      <p>Durchsuchen und filtern Sie Ihre Ausgabenhistorie</p>
+    </div>
+    <button class="btn-primary">
+    <span class="material-icons-outlined">add</span>
+    Neue Ausgabe
+    </button>
+  </div>
+
+  <div class="card filter-card">
+    <div class="filter-header">
+      <span class="material-icons-outlined">filter_alt</span>
+      <h3>Suchen & Filtern</h3>
+    </div>
+
+    <div class="search-wrapper">
+      <span class="material-icons-outlined">search</span>
+      <input type="text" placeholder="Händler, Beschreibung oder Tags durchsuchen...">
+    </div>
+
+    <div class="filter-row">
+      
+      <div class="filter-item">
+        <label><span class="material-icons-outlined">sell</span> Kategorie</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleDropdown('cat')">
+            <span class="dot" 
+                  *ngIf="selectedCategoryObject?.color && selectedCategoryObject.color !== 'transparent'" 
+                  [style.background-color]="selectedCategoryObject.color">
+            </span>
+            <span class="selected-text">{{ selectedCategory }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+
+          <div class="dropdown-list" *ngIf="isCategoryOpen">
+            <div class="dropdown-item" *ngFor="let cat of categories" (click)="selectItem('cat', cat)">
+              <span class="dot" 
+                    *ngIf="cat.color !== 'transparent'" 
+                    [style.background-color]="cat.color">
+              </span>
+              <span class="cat-name">{{ cat.name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-item">
+        <label><span class="material-icons-outlined">calendar_today</span> Monat</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleDropdown('month')">
+            <span class="selected-text">{{ selectedMonth }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+          <div class="dropdown-list" *ngIf="isMonthOpen">
+            <div class="dropdown-item" *ngFor="let m of months" (click)="selectItem('month', m)">
+              {{ m }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-item">
+        <label><span class="material-icons-outlined">tune</span> Typ</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleDropdown('type')">
+            <span class="selected-text">{{ selectedType }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+          <div class="dropdown-list" *ngIf="isTypeOpen">
+            <div class="dropdown-item" *ngFor="let t of types" (click)="selectItem('type', t)">
+              {{ t }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card empty-card">
+    <div class="empty-content">
+      <span class="material-icons-outlined mailbox-icon">inventory_2</span>
+      <p>Noch keine Ausgaben vorhanden</p>
+    </div>
+  </div>
+</div>

@@ -1,36 +1,27 @@
 <div class="sidebar">
-  <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">grid_view</span>
-    Dashboard
+<div class="nav-links">
+  <a *ngFor="let item of navItems" 
+     [routerLink]="item.path" 
+     routerLinkActive="active" 
+     class="nav-item">
+    <span class="material-icons-outlined">{{ item.icon }}</span>
+    {{ item.name }}
   </a>
-  
-  <a routerLink="/expenses" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">payments</span>
-    Ausgaben
-  </a>
+</div>
 
-  <a routerLink="/income" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">trending_up</span>
-    Einnahmen
-  </a>
+  <div style="flex: 1;"></div>
 
-  <a routerLink="/projects" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">folder</span>
-    Projekte
-  </a>
+  <div class="profile-section" (click)="toggleLogout()">
+    <div class="profile-content">
+      <div class="avatar">MM</div>
+      <div class="user-details">
+        <span class="user-name">Max Mustermann</span>
+      </div>
+      <span class="material-icons-outlined more-icon">more_vert</span>
+    </div>
 
-  <a routerLink="/goals" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">savings</span>
-    Sparziele
-  </a>
-
-  <a routerLink="/overview" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">leaderboard</span>
-    Übersicht
-  </a>
-
-  <a routerLink="/settings" routerLinkActive="active" class="nav-item">
-    <span class="material-icons-outlined">settings</span>
-    Einstellungen
-  </a>
+    <div class="logout-menu" *ngIf="showLogout">
+        <button (click)="logout()">Abmelden</button>
+    </div>
+  </div>
 </div>

@@ -1,12 +1,12 @@
 .dashboard-container {
-  padding: 40px;
+  padding: 20px 20px 20px 20px;
   background-color: #F8F9FC;
   min-height: 100vh;
 
   .header {
     margin-bottom: 30px;
     h1 { font-size: 28px; font-weight: 700; color: #1A1D1F; }
-    p { color: #6F767E; font-size: 14px; }
+    p { color: #6F767E; font-size: 14px; margin-top: 4px; }
   }
 
   .stats-grid {

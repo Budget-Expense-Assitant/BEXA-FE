@@ -1,0 +1,65 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8f9fc;
+  overflow: hidden;
+}
+
+.app-header {
+  width: 100%;
+  background-color: white;
+  padding: 0 40px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  flex-shrink: 0;
+  z-index: 1001;
+
+  .header-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 40px;
+
+    .logo-text {
+      color: #5D5CDE;
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: -1px;
+    }
+
+    .logo-divider {
+      height: 24px;
+      border-left: 1px solid #eee;
+      margin-left: 15px;
+    }
+
+    .logo-subtext {
+      color: #6F767E;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  }
+}
+
+.layout-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar-container {
+  padding: 20px 0 20px 60px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 40px;
+  overflow-y: auto;
+  height: 100%;
+}

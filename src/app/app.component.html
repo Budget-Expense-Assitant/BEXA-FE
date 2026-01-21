@@ -1,24 +1,22 @@
-<div class="app-wrapper" style="display: flex; flex-direction: column; min-height: 100vh; background-color: #f8f9fc;">
+<div class="app-wrapper">
   
-  <header style="width: 100%; background-color: white; padding: 15px 40px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; height: 80px; position: sticky; top: 0; z-index: 1000;">
-    <div style="display: flex; align-items: center; gap: 15px;">
-      <span style="color: #5D5CDE; font-weight: 800; font-size: 26px; letter-spacing: -1px; margin-left: 40px;">BEXA</span>
-      
-      <div style="color: #6F767E; font-size: 13px; line-height: 1.2; font-weight: 500; white-space: nowrap; border-left: 1px solid #eee; padding-left: 15px;">
+  <header class="app-header">
+    <div class="header-logo-section">
+      <span class="logo-text">BEXA</span>
+      <div class="logo-divider"></div>
+      <div class="logo-subtext">
         Budget EXpense Assistant
       </div>
     </div>
   </header>
 
-    <div class="layout-body" style="display: flex; flex: 1; padding: 20px 0;">
-    
-    <aside style="margin-left: 60px; margin-bottom: 20px;">
-        <app-sidebar></app-sidebar>
+  <div class="layout-body">
+    <aside class="sidebar-container">
+      <app-sidebar></app-sidebar>
     </aside>
 
-    <main style="flex: 1; padding-left: 40px; padding-right: 40px; height: calc(100vh - 100px); overflow-y: auto;">
-        <router-outlet></router-outlet>
+    <main class="main-content">
+      <router-outlet></router-outlet>
     </main>
-    
-    </div>
+  </div>
 </div>

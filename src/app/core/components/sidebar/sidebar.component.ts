@@ -11,12 +11,22 @@ import { RouterModule } from '@angular/router';
 })
 export class SidebarComponent {
   navItems = [
-    { name: 'Dashboard', icon: 'grid-view', path: '/dashboard' },
-    { name: 'Ausgaben', icon: 'trending-down', path: '/ausgaben' },
-    { name: 'Einnahmen', icon: 'trending-up', path: '/einnahmen' },
-    { name: 'Projekte', icon: 'folder', path: '/projekte' },
-    { name: 'Sparziele', icon: 'target', path: '/sparziele' },
-    { name: 'Übersicht', icon: 'bar-chart', path: '/uebersicht' },
+    { name: 'Dashboard', icon: 'grid_view', path: '/dashboard' },
+    { name: 'Ausgaben', icon: 'payments', path: '/ausgaben' },
+    { name: 'Einnahmen', icon: 'trending_up', path: '/einnahmen' },
+    { name: 'Sparziele', icon: 'savings', path: '/sparziele' },
+    { name: 'Übersicht', icon: 'leaderboard', path: '/uebersicht' },
     { name: 'Einstellungen', icon: 'settings', path: '/einstellungen' }
   ];
+
+  showLogout: boolean = false;
+
+  toggleLogout(): void {
+    this.showLogout = !this.showLogout;
+  }
+
+  logout(): void {
+    console.log('Benutzer wird abgemeldet...');
+    this.showLogout = false;
+  }
 }
