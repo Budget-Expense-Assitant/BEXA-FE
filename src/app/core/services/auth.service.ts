@@ -16,7 +16,7 @@ export class AuthService {
 
   register(payload: RegisterRequest): Observable<AuthResponse> {
     // Post auf /create endpoint
-    return this.http.post<AuthResponse>(`${this.API_URL}/create`, payload);
+    return this.http.post<AuthResponse>(`${this.API_URL}/register`, payload);
   }
 
   login(payload: LoginRequest): Observable<AuthResponse> {
