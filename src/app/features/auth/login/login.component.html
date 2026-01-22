@@ -24,8 +24,18 @@
           <span class="icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           </span>
-          <input id="username" type="text" formControlName="username" placeholder="Dein Username" />
+          <input id="username" type="text" formControlName="username" placeholder="Dein Username" maxlength="20" />
         </div>
+
+        @if (loginForm.get('username')?.touched && loginForm.get('username')?.invalid) {
+            <div class="error-msg">
+                @if (loginForm.get('username')?.hasError('required')) {
+                    Username wird benötigt.
+                } @else if (loginForm.get('username')?.hasError('minlength')) {
+                    Zu kurz (min. 3 Zeichen).
+                }
+            </div>
+        }
       </div>
 
       <div class="input-group">
@@ -50,6 +60,10 @@
             }
           </button>
         </div>
+
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+            <div class="error-msg">Passwort benötigt (min 6 Zeichen).</div>
+        }
       </div>
 
       @if (errorMessage()) {

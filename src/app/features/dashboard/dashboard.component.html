@@ -23,6 +23,13 @@
     </div>
   </div>
 
+  <div class="p-4">
+    <h2 class="text-2xl font-bold mb-4">Finanzübersicht</h2>
+
+    <app-asset-chart [labels]="chartLabels" [data]="chartData" label="Mein Nettovermögen">
+    </app-asset-chart>
+  </div>
+
   <div class="main-grid">
     <div class="card">
       <h3>Ausgaben-Übersicht</h3>
@@ -38,7 +45,8 @@
       </div>
     </div>
 
-    <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; color: #9A9FA5;">
+    <div class="card"
+      style="display: flex; flex-direction: column; justify-content: center; align-items: center; color: #9A9FA5;">
       <h3>Sparziele</h3>
       <p style="margin-top: 40px;">Noch keine Sparziele vorhanden</p>
     </div>
