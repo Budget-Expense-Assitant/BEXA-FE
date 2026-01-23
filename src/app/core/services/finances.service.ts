@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 export interface ExpenseRequest {
   amount: number;
   date: string;       // Format: YYYY-MM-DD
-  target: string;     // Wir nutzen das für die 'Kategorie'
+  target: string;
   description: string;
-  recurring: boolean; // Pflichtfeld im Backend
+  recurring: boolean;
   expenseStartDate?: string;
   expenseEndDate?: string;
 }
