@@ -26,4 +26,10 @@ export class FinancesService {
       withCredentials: true
     });
   }
+
+  getFinances(userId: string): Observable<any> {
+    return this.http.get(`${this.API_BASE}/${userId}/finances`, {
+      withCredentials: true
+    });
+  }
 }
