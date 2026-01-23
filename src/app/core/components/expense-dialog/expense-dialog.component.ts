@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-expense-dialog',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './expense-dialog.component.html',
   styleUrls: ['./expense-dialog.component.scss']
 })
@@ -15,7 +14,6 @@ export class ExpenseDialogComponent {
   @Output() saveExpense = new EventEmitter<any>();
 
   expenseForm: FormGroup;
-  
   categories = ['Essen', 'Miete', 'Shoppen', 'Spaß', 'Transport', 'Sonstiges'];
 
   constructor(private fb: FormBuilder) {

@@ -1,1 +1,9 @@
-<p>expenses works!</p>
+<div class="p-6">
+    <h1>Expenses</h1>
+    <button (click)="isDialogOpen = true" class="btn-primary">+ Ausgabe</button>
+
+    <app-expense-dialog 
+        [isOpen]="isDialogOpen" 
+        (closeDialog)="isDialogOpen = false"
+        (saveExpense)="onSaveExpense($event)"> </app-expense-dialog>
+</div>

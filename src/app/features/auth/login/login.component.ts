@@ -38,7 +38,18 @@ export class LoginComponent {
       this.authService.login(request).subscribe({
         next: (response) => {
           console.log('Login success', response);
-          this.router.navigate(['/dashboard']);
+          
+          const token = response.bearerToken;
+          const userId = response.userId; 
+
+          if (token && userId) {
+             localStorage.setItem('token', token);
+             localStorage.setItem('userId', userId);
+
+             this.router.navigate(['/dashboard']);
+          } else {
+             this.errorMessage.set('Fehler: Login-Daten unvollständig.');
+          }
         },
         error: (err) => {
           console.error('Login failed', err);

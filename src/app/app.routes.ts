@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './core/layout/main-layout/main-layout';
+import { MainLayoutComponent } from './core/layout/main-layout/main-layout'; // Pfad ggf. checken
 import { RegisterComponent } from './features/auth/register/register.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -8,6 +8,8 @@ import { ExpensesComponent } from './features/expenses/expenses.component';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   {
     path: '',
@@ -19,7 +21,7 @@ export const routes: Routes = [
       },
       { 
         path: 'ausgaben', component: ExpensesComponent
-      }
+      } 
     ]
   },
   
