@@ -1,0 +1,59 @@
+@if (isOpen) {
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Ausgabe erfassen 💸</h2>
+      
+      <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+          <label>Betrag (€) *</label>
+          <input type="number" formControlName="amount" placeholder="0.00" step="0.01">
+          
+          @if (expenseForm.get('amount')?.invalid && expenseForm.get('amount')?.touched) {
+            <small class="error">
+              Bro, wie viel hast du ausgegeben?
+            </small>
+          }
+        </div>
+  
+        <div class="form-group">
+          <label>Kategorie *</label>
+          <select formControlName="category">
+            <option value="" disabled selected>Wähl was aus...</option>
+            
+            @for (cat of categories; track cat) {
+              <option [value]="cat">{{ cat }}</option>
+            }
+            
+          </select>
+          
+          @if (expenseForm.get('category')?.invalid && expenseForm.get('category')?.touched) {
+            <small class="error">
+              Kategorie ist Pflicht!
+            </small>
+          }
+        </div>
+  
+        <div class="form-group">
+          <label>Datum</label>
+          <input type="date" formControlName="date">
+        </div>
+  
+        <div class="form-group">
+          <label>Händler / Shop (Optional)</label>
+          <input type="text" formControlName="merchant" placeholder="z.B. Rewe, Amazon">
+        </div>
+  
+        <div class="form-group">
+          <label>Notiz (Optional)</label>
+          <input type="text" formControlName="description" placeholder="Was genau?">
+        </div>
+  
+        <div class="actions">
+          <button type="button" class="btn-secondary" (click)="onCancel()">Abbrechen</button>
+          <button type="submit" class="btn-primary" [disabled]="expenseForm.invalid">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
