@@ -23,6 +23,13 @@
     </div>
   </div>
 
+  <div class="p-4">
+    <h2 class="text-2xl font-bold mb-4">Finanzübersicht</h2>
+
+    <app-asset-chart [labels]="chartLabels" [data]="chartData" label="Mein Nettovermögen">
+    </app-asset-chart>
+  </div>
+
   <div class="main-grid">
     <div class="card">
       <h3>Ausgaben-Übersicht</h3>
@@ -60,12 +67,14 @@
       </div>
     </div>
 
-    <div class="card" style="display: flex; flex-direction: column; align-items: center; color: #9A9FA5;">
-      <h3 style="align-self: flex-start; width: 100%;">Sparziele</h3>
-      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <span class="material-icons-outlined" style="font-size: 48px; margin-bottom: 15px; color: #EFEFEF;">savings</span>
-        <p>Noch keine Sparziele vorhanden</p>
-      </div>
+    <!-- Income Expense Chart Component -->
+    <app-income-expense-chart title="Finanzcheck im aktuellen Monat" [income]="2300" [expenses]="1800">
+    </app-income-expense-chart>
+
+    <div class="card"
+      style="display: flex; flex-direction: column; justify-content: center; align-items: center; color: #9A9FA5;">
+      <h3>Sparziele</h3>
+      <p style="margin-top: 40px;">Noch keine Sparziele vorhanden</p>
     </div>
   </div>
 

@@ -31,8 +31,7 @@ describe('AuthService', () => {
 
   it('should send a POST request to register a user', () => {
     const mockPayload: RegisterRequest = {
-      username: 'GenZ_User',
-      email: 'vibes@bexa.com',
+      username: 'User',
       password: 'superSecretPassword'
     };
 

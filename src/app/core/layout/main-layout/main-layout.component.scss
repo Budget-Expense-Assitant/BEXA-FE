@@ -50,16 +50,11 @@
   display: flex;
   flex: 1;
   overflow: hidden;
-
-  &.full-page {
-    height: 100vh;
-  }
 }
 
 .sidebar-container {
-  padding: 20px 0 20px 60px;
+  padding: 20px 0 20px 60px; // Das sorgt für den Abstand der Sidebar vom Rand
   flex-shrink: 0;
-  display: flex;
 }
 
 .main-content {
@@ -67,23 +62,4 @@
   padding: 20px 40px;
   overflow-y: auto;
   height: 100%;
-  transition: all 0.2s ease-in-out;
-
-  &.no-sidebar {
-    padding: 0; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f9fc;
-  }
-}
-
-@media (max-width: 1024px) {
-  .app-header .header-logo-section {
-    margin-left: 0;
-  }
-  .sidebar-container {
-    padding-left: 20px;
-  }
 }

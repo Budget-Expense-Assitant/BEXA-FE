@@ -1,0 +1,31 @@
+<div class="dashboard-card">
+  <div class="card-header">
+    <h3>{{ title }}</h3>
+  </div>
+
+  <div class="chart-wrapper">
+    <div class="canvas-container">
+      <canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="'bar'">
+      </canvas>
+    </div>
+
+    <div class="stats-container" (click)="toggleLabelMode()" title="Ansicht wechseln">
+      <span class="label">Resultat:</span>
+      
+      <div class="value-display" [ngClass]="{'positive': balance >= 0, 'negative': balance < 0}">
+        @if (!showPercentage) {
+          <span>{{ balance | currency:'EUR':'symbol':'1.2-2':'de-DE' }}</span>
+        } @else {
+          <span>{{ savingsRate | number:'1.1-2':'de-DE' }}%</span>
+        }
+      </div>
+      
+      <span class="hint-icon">
+        <small>(Klicken für %)</small>
+      </span>
+    </div>
+  </div>
+</div>

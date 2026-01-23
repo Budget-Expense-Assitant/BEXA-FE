@@ -1,0 +1,237 @@
+:host {
+  display: block; // Wichtig für Full-Screen Wrapper
+  font-family: 'Inter', sans-serif;
+}
+
+.register-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  
+  // Der Signature Gradient
+  background: linear-gradient(135deg, #5f5ff0 0%, #8a8aff 100%);
+  color: white;
+}
+
+// Branding Section
+.brand-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: slideInDown 0.6s ease-out;
+
+  .logo-circle {
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    svg {
+      width: 32px;
+      height: 32px;
+      color: #5f5ff0;
+    }
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .subline {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+// Main Card
+.register-card {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  padding: 2.5rem;
+  color: #1e293b;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: fadeInUp 0.6s ease-out;
+
+  .card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// Inputs & Icons
+.input-group {
+  margin-bottom: 1.25rem;
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      position: absolute;
+      left: 1rem;
+      color: #94a3b8;
+      display: flex;
+      
+      svg { width: 20px; height: 20px; }
+    }
+
+    input {
+      width: 100%;
+      padding: 0.875rem 1rem 0.875rem 3rem; // Padding links für Icon
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #334155;
+      transition: all 0.2s;
+      outline: none;
+
+      &::placeholder { color: #cbd5e1; }
+
+      &:focus {
+        border-color: #5f5ff0;
+        box-shadow: 0 0 0 3px rgba(95, 95, 240, 0.15);
+      }
+    }
+
+    .toggle-btn {
+      position: absolute;
+      right: 0.75rem;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      
+      &:hover { color: #64748b; }
+      svg { width: 20px; height: 20px; }
+    }
+  }
+  
+  .error-msg {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: #ef4444;
+    animation: slideDown 0.2s;
+  }
+}
+
+// Buttons & Alerts
+.cta-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.875rem;
+  background-color: #5f5ff0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: #4f46e5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(95, 95, 240, 0.3);
+  }
+
+  &:active:not(:disabled) { transform: translateY(0); }
+
+  &:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+  }
+}
+
+.error-banner {
+  background-color: #fef2f2;
+  color: #991b1b;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+// Footer
+.card-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #64748b;
+
+  a {
+    color: #5f5ff0;
+    text-decoration: none;
+    font-weight: 600;
+    
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.security-note {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  
+  svg { opacity: 0.8; }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
