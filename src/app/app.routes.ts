@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './core/layout/main-layout/main-layout';
+import { MainLayoutComponent } from './core/layout/main-layout/main-layout'; // Pfad ggf. checken
 import { RegisterComponent } from './features/auth/register/register.component';
 import { LoginComponent } from './features/auth/login/login.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   {
     path: '',

@@ -1,12 +1,14 @@
 <div class="expenses-container">
+  
   <div class="header">
     <div class="header-text">
       <h1>Ausgaben verwalten</h1>
       <p>Durchsuchen und filtern Sie Ihre Ausgabenhistorie</p>
     </div>
-    <button class="btn-primary">
-    <span class="material-icons-outlined">add</span>
-    Neue Ausgabe
+    
+    <button class="btn-primary" (click)="isDialogOpen = true">
+      <span class="material-icons-outlined">add</span>
+      Neue Ausgabe
     </button>
   </div>
 
@@ -27,23 +29,25 @@
         <label><span class="material-icons-outlined">sell</span> Kategorie</label>
         <div class="custom-dropdown">
           <div class="dropdown-selected" (click)="toggleDropdown('cat')">
-            <span class="dot" 
-                  *ngIf="selectedCategoryObject?.color && selectedCategoryObject.color !== 'transparent'" 
-                  [style.background-color]="selectedCategoryObject.color">
-            </span>
+            @if (selectedCategoryObject?.color && selectedCategoryObject.color !== 'transparent') {
+              <span class="dot" [style.background-color]="selectedCategoryObject.color"></span>
+            }
             <span class="selected-text">{{ selectedCategory }}</span>
             <span class="material-icons-outlined">expand_more</span>
           </div>
 
-          <div class="dropdown-list" *ngIf="isCategoryOpen">
-            <div class="dropdown-item" *ngFor="let cat of categories" (click)="selectItem('cat', cat)">
-              <span class="dot" 
-                    *ngIf="cat.color !== 'transparent'" 
-                    [style.background-color]="cat.color">
-              </span>
-              <span class="cat-name">{{ cat.name }}</span>
+          @if (isCategoryOpen) {
+            <div class="dropdown-list">
+              @for (cat of categories; track cat.name) {
+                <div class="dropdown-item" (click)="selectItem('cat', cat)">
+                  @if (cat.color !== 'transparent') {
+                    <span class="dot" [style.background-color]="cat.color"></span>
+                  }
+                  <span class="cat-name">{{ cat.name }}</span>
+                </div>
+              }
             </div>
-          </div>
+          }
         </div>
       </div>
 
@@ -54,11 +58,16 @@
             <span class="selected-text">{{ selectedMonth }}</span>
             <span class="material-icons-outlined">expand_more</span>
           </div>
-          <div class="dropdown-list" *ngIf="isMonthOpen">
-            <div class="dropdown-item" *ngFor="let m of months" (click)="selectItem('month', m)">
-              {{ m }}
+          
+          @if (isMonthOpen) {
+            <div class="dropdown-list">
+              @for (m of months; track m) {
+                <div class="dropdown-item" (click)="selectItem('month', m)">
+                  {{ m }}
+                </div>
+              }
             </div>
-          </div>
+          }
         </div>
       </div>
 
@@ -69,11 +78,16 @@
             <span class="selected-text">{{ selectedType }}</span>
             <span class="material-icons-outlined">expand_more</span>
           </div>
-          <div class="dropdown-list" *ngIf="isTypeOpen">
-            <div class="dropdown-item" *ngFor="let t of types" (click)="selectItem('type', t)">
-              {{ t }}
+          
+          @if (isTypeOpen) {
+            <div class="dropdown-list">
+              @for (t of types; track t) {
+                <div class="dropdown-item" (click)="selectItem('type', t)">
+                  {{ t }}
+                </div>
+              }
             </div>
-          </div>
+          }
         </div>
       </div>
 
@@ -86,4 +100,11 @@
       <p>Noch keine Ausgaben vorhanden</p>
     </div>
   </div>
+
+  <app-expense-dialog 
+      [isOpen]="isDialogOpen" 
+      (closeDialog)="isDialogOpen = false"
+      (saveExpense)="onSaveExpense($event)">
+  </app-expense-dialog>
+
 </div>
