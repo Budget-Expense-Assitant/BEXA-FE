@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core'; // 1. OnInit importieren
 import { CommonModule } from '@angular/common';
-// Stelle sicher, dass der Pfad stimmt. Oft liegt Shared unter 'src/app/shared/components...'
 import { ExpenseDialogComponent } from '../../core/components/expense-dialog/expense-dialog.component';
 import { FinancesService, ExpenseRequest } from '../../core/services/finances.service';
 
@@ -11,15 +10,18 @@ import { FinancesService, ExpenseRequest } from '../../core/services/finances.se
   templateUrl: './expenses.component.html',
   styleUrls: ['./expenses.component.scss']
 })
-export class ExpensesComponent {
-  // ----------------------------------------------------
-  // Teil 1: Services & Dialog Logic (aus HEAD)
-  // ----------------------------------------------------
-  private financesService = inject(FinancesService);
-  isDialogOpen = false;
+export class ExpensesComponent implements OnInit { // 2. "implements OnInit" hinzufügen
 
   // ----------------------------------------------------
-  // Teil 2: Filter & Dropdown Logic (aus develop)
+  // Services & State
+  // ----------------------------------------------------
+  private financesService = inject(FinancesService);
+
+  isDialogOpen = false;
+  expensesList: any[] = [];
+
+  // ----------------------------------------------------
+  // Filter & Dropdown Logic
   // ----------------------------------------------------
   isCategoryOpen = false;
   isMonthOpen = false;
@@ -44,29 +46,53 @@ export class ExpensesComponent {
   ];
 
   months = [
-    'Alle Monate',
-    'Januar', 'Februar', 'März', 'April', 
-    'Mai', 'Juni', 'Juli', 'August', 
-    'September', 'Oktober', 'November', 'Dezember'
+    'Alle Monate', 'Januar', 'Februar', 'März', 'April',
+    'Mai', 'Juni', 'Juli', 'August', 'September',
+    'Oktober', 'November', 'Dezember'
   ];
 
   types = ['Alle Typen', 'Fixe Ausgaben', 'Variable Ausgaben'];
 
-  // ----------------------------------------------------
-  // Methoden: Speichern (aus HEAD)
-  // ----------------------------------------------------
+  isLoading = true;
+
+  ngOnInit() {
+    this.fetchExpenses();
+  }
+
+  fetchExpenses() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) return;
+
+    this.isLoading = true;
+
+    this.financesService.getFinances(userId).subscribe({
+      next: (data) => {
+        this.expensesList = data.expenses || [];
+        this.isLoading = false;
+        console.log('Ausgaben geladen:', this.expensesList);
+      },
+      error: (err) => {
+        console.error('Konnte Ausgaben nicht laden', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
+  getCategoryColor(categoryName: string): string {
+    const foundCat = this.categories.find(c => c.name === categoryName);
+    return foundCat ? foundCat.color : '#999';
+  }
+
   onSaveExpense(dialogData: any) {
-    // 1. User ID holen 🔑
     const userId = localStorage.getItem('userId');
 
     if (!userId) {
-      console.error('Kein User eingeloggt! (userId fehlt im localStorage)');
+      console.error('Kein User eingeloggt!');
       return;
     }
 
-    // 2. Daten mappen (Frontend -> Backend)
-    const fullDescription = dialogData.merchant 
-      ? `${dialogData.merchant}: ${dialogData.description}` 
+    const fullDescription = dialogData.merchant
+      ? `${dialogData.merchant}: ${dialogData.description}`
       : dialogData.description || 'Keine Beschreibung';
 
     const payload: ExpenseRequest = {
@@ -77,12 +103,13 @@ export class ExpensesComponent {
       recurring: false
     };
 
-    // 3. API Call Backend
     this.financesService.addExpense(userId, payload).subscribe({
       next: (res) => {
         console.log('Ausgabe gespeichert!', res);
         this.isDialogOpen = false;
-        // Optional: Hier könntest du noch eine Methode aufrufen, um die Liste neu zu laden
+
+        // 5. WICHTIG: Liste neu laden, damit die neue Ausgabe sofort erscheint
+        this.fetchExpenses();
       },
       error: (err) => {
         console.error('Fehler beim Speichern:', err);
@@ -91,7 +118,7 @@ export class ExpensesComponent {
   }
 
   // ----------------------------------------------------
-  // Methoden: UI & Filter (aus develop)
+  // UI Helper
   // ----------------------------------------------------
   toggleDropdown(type: string) {
     if (type === 'cat') this.isCategoryOpen = !this.isCategoryOpen;
