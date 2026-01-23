@@ -1,13 +1,15 @@
 <div class="dashboard-container">
   <div class="header">
-    <h1>Dashboard</h1>
-    <p>Übersicht Ihrer Finanzen</p>
+    <div class="header-text">
+      <h1>Dashboard</h1>
+      <p>Übersicht Ihrer Finanzen</p>
+    </div>
   </div>
 
   <div class="stats-grid">
     <div class="card">
       <small>Monatliche Einnahmen</small>
-      <h2 class="value-green">0.00 €</h2>
+      <h2 class="value-green">3250.00 €</h2>
     </div>
     <div class="card">
       <small>Monatliche Ausgaben</small>
@@ -15,7 +17,7 @@
     </div>
     <div class="card">
       <small>Vermögen</small>
-      <h2 class="value-blue">100.000.000 €</h2>
+      <h2 class="value-blue">4.637,00 €</h2>
     </div>
     <div class="card">
       <small>Gesamt Erspartes</small>
@@ -33,15 +35,37 @@
   <div class="main-grid">
     <div class="card">
       <h3>Ausgaben-Übersicht</h3>
-      <div style="margin-top: 20px;">
-        <p>Budget-Auslastung <span style="float: right;">0.0%</span></p>
-        <div style="width: 100%; height: 8px; background: #EEE; border-radius: 4px; margin: 10px 0;">
-          <div style="width: 0%; height: 100%; background: #5D5CDE; border-radius: 4px;"></div>
+      <div style="margin-top: 24px;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span style="color: #1A1D1F; font-weight: 500;">Budget-Auslastung</span>
+          <span style="font-weight: 600;">0.0%</span>
         </div>
-        <p>Fixe Ausgaben <span style="float: right; font-weight: bold;">0.00 €</span></p>
-        <p>Variable Ausgaben <span style="float: right; font-weight: bold;">0.00 €</span></p>
-        <hr style="margin: 15px 0; border: none; border-top: 1px solid #EEE;">
-        <p><strong>Monatsbilanz</strong> <span class="value-green" style="float: right;">+0.00 €</span></p>
+
+        <div style="width: 100%; height: 8px; background: #F4F4F4; border-radius: 10px; margin-bottom: 15px;">
+          <div style="width: 0%; height: 100%; background: #5D5CDE; border-radius: 10px;"></div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #6F767E; font-weight: 500;">Fixe Ausgaben</span>
+            <span style="font-weight: 700; color: #6F767E;">0.00 €</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #6F767E; font-weight: 500;">Variable Ausgaben</span>
+            <span style="font-weight: 700; color: #6F767E;">0.00 €</span>
+          </div>
+
+        </div>
+
+        <hr style="margin: 20px 0; border: none; border-top: 1px solid #F0F0F0;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <strong style="font-size: 16px;">Monatsbilanz</strong>
+          <span class="value-green" style="font-weight: 800; font-size: 18px;">+3250.00 €</span>
+        </div>
       </div>
     </div>
 
@@ -57,7 +81,8 @@
   </div>
 
   <div class="card" style="margin-top: 20px; text-align: center; color: #9A9FA5; padding: 60px;">
-    <h3>Letzte Transaktionen</h3>
-    <p style="margin-top: 20px;">Noch keine Transaktionen vorhanden</p>
+    <h3 style="text-align: left; color: #1A1D1F; margin-bottom: 40px;">Letzte Transaktionen</h3>
+    <span class="material-icons-outlined" style="font-size: 48px; margin-bottom: 15px; color: #EFEFEF;">receipt_long</span>
+    <p>Noch keine Transaktionen vorhanden</p>
   </div>
 </div>

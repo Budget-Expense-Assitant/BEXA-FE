@@ -1,18 +1,27 @@
-<aside class="sidebar">
-  <div class="logo-container">
-    <div class="logo-box">BEXA</div>
-    <div class="logo-text">
-      Budget EXpense<br>Assistant
+<div class="sidebar">
+<div class="nav-links">
+  <a *ngFor="let item of navItems" 
+     [routerLink]="item.path" 
+     routerLinkActive="active" 
+     class="nav-item">
+    <span class="material-icons-outlined">{{ item.icon }}</span>
+    {{ item.name }}
+  </a>
+</div>
+
+  <div style="flex: 1;"></div>
+
+  <div class="profile-section" (click)="toggleLogout()">
+    <div class="profile-content">
+      <div class="avatar">MM</div>
+      <div class="user-details">
+        <span class="user-name">Max Mustermann</span>
+      </div>
+      <span class="material-icons-outlined more-icon">more_vert</span>
+    </div>
+
+    <div class="logout-menu" *ngIf="showLogout">
+        <button (click)="logout()">Abmelden</button>
     </div>
   </div>
-
-  <nav class="nav-list">
-    <a *ngFor="let item of navItems" 
-       [routerLink]="item.path"
-       routerLinkActive="active"
-       class="nav-item">
-      <span class="nav-icon">#</span>
-      {{ item.name }}
-    </a>
-  </nav>
-</aside>
+</div>

@@ -1,22 +1,35 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component'; // Pfad anpassen falls nötig
+import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
   imports: [RouterOutlet, SidebarComponent],
   template: `
-    <div class="app-container" style="display: flex; min-height: 100vh; background-color: #f8f9fc;">
+    <div class="app-wrapper">
       
-      <app-sidebar></app-sidebar>
+      <header class="app-header">
+        <div class="header-logo-section">
+          <span class="logo-text">BEXA</span>
+          <div class="logo-divider"></div>
+          <div class="logo-subtext">
+            Budget EXpense Assistant
+          </div>
+        </div>
+      </header>
 
-      <main style="flex: 1; padding-left: 280px; padding-top: 20px; padding-right: 20px;">
-        <router-outlet></router-outlet>
-      </main>
-      
+      <div class="layout-body">
+        <aside class="sidebar-container">
+          <app-sidebar></app-sidebar>
+        </aside>
+
+        <main class="main-content">
+          <router-outlet></router-outlet>
+        </main>
+      </div>
     </div>
   `,
-  styles: []
+  styleUrls: ['./main-layout.component.scss'] // Wir nutzen die SCSS Datei für das Styling
 })
 export class MainLayoutComponent {}

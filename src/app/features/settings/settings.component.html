@@ -1,0 +1,137 @@
+<div class="settings-container">
+  <div class="header">
+    <h1>Einstellungen</h1>
+    <p class="sub-header">Steuerstatus und Berechnungsparameter</p>
+  </div>
+
+  <div class="settings-grid">
+    <div class="card">
+      <div class="card-header">
+        <h3>Steuerstatus</h3>
+        <p class="card-subtitle">Legen Sie Ihre Parameter fest</p>
+      </div>
+      
+      <div class="form-group">
+        <label>Steuerklasse</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleSteuerklasse()">
+            <span class="selected-text">{{ steuerklasse }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+          <div class="dropdown-list" *ngIf="showSteuerklasseDropdown">
+            <div class="dropdown-item" *ngFor="let opt of steuerklassenOptions" 
+                 (click)="selectSteuerklasse(opt)" [class.active]="steuerklasse === opt">
+              <span class="cat-name">{{ opt }}</span>
+              <span class="material-icons-outlined check" *ngIf="steuerklasse === opt">check</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toggle-row no-border">
+        <div class="toggle-info">
+          <span class="toggle-title">Kinder</span>
+          <p class="toggle-sub">Reduziert die Pflegeversicherung</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="hatKinder">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="form-group child-select-area" *ngIf="hatKinder">
+        <label>Anzahl der Kinder</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleKinder()">
+            <span class="selected-text">{{ anzahlKinder }} {{ anzahlKinder === 1 ? 'Kind' : 'Kinder' }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+          <div class="dropdown-list" *ngIf="showKinderDropdown">
+            <div class="dropdown-item" *ngFor="let n of kinderOptions" 
+                 (click)="selectKinder(n)" [class.active]="anzahlKinder === n">
+              <span class="cat-name">{{ n }} {{ n === 1 ? 'Kind' : 'Kinder' }}</span>
+              <span class="material-icons-outlined check" *ngIf="anzahlKinder === n">check</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <span class="toggle-title">Kirchensteuer</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="hatKirchensteuer">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <button class="btn-primary-full" (click)="saveSettings()">Einstellungen speichern</button>
+    </div>
+
+    <div class="card calculator-card">
+      <div class="card-header">
+        <h3>Rechner</h3>
+        <p class="card-subtitle">Monatliche Netto-Schätzung</p>
+      </div>
+
+      <div class="form-group">
+        <label>Brutto-Gehalt (monatlich)</label>
+        <div class="input-container">
+          <input type="number" [(ngModel)]="bruttoGehalt">
+          <span class="currency-symbol">€</span>
+        </div>
+      </div>
+
+      <div class="calculation-details">
+        <div class="calc-row">
+          <span>Brutto-Betrag</span>
+          <span class="value">{{ bruttoGehalt | number:'1.2-2' }} €</span>
+        </div>
+        <div class="calc-row">
+          <span>Sozialversicherung</span>
+          <span class="value minus">-{{ sozialVersicherung | number:'1.2-2' }} €</span>
+        </div>
+        <div class="calc-row">
+          <span>Einkommensteuer</span>
+          <span class="value minus">-{{ einkommenSteuer | number:'1.2-2' }} €</span>
+        </div>
+        <div class="calc-row" *ngIf="hatKirchensteuer">
+          <span>Kirchensteuer</span>
+          <span class="value minus">-{{ kirchenSteuerBetrag | number:'1.2-2' }} €</span>
+        </div>
+        <div class="calc-row total-deduction">
+          <span>Abzüge gesamt</span>
+          <span class="value minus">-{{ gesamtAbzug | number:'1.2-2' }} €</span>
+        </div>
+        
+        <div class="netto-result-box">
+          <span class="netto-label">Netto-Gehalt</span>
+          <span class="netto-value">{{ nettoGehalt | number:'1.2-2' }} €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-accordion">
+    <div class="how-it-works" (click)="showInfo = !showInfo">
+      <span class="material-icons-outlined">info</span>
+      <span>Wie funktioniert die Berechnung?</span>
+      <span class="material-icons-outlined arrow">{{ showInfo ? 'expand_less' : 'expand_more' }}</span>
+    </div>
+    <div class="info-content" *ngIf="showInfo">
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Kirchensteuer</strong>
+          <p *ngIf="hatKirchensteuer">Berechnet mit 9% der Lohnsteuer.</p>
+          <p *ngIf="!hatKirchensteuer">Derzeit nicht berücksichtigt.</p>
+        </div>
+        <div class="info-item">
+          <strong>Kinder-Vorteil</strong>
+          <p *ngIf="hatKinder">Ersparnis: {{ ersparnisDurchKinder | number:'1.2-2' }} €.</p>
+          <p *ngIf="!hatKinder">Volle PV-Beiträge.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

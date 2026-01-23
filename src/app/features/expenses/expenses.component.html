@@ -1,9 +1,110 @@
-<div class="p-6">
-    <h1>Expenses</h1>
-    <button (click)="isDialogOpen = true" class="btn-primary">+ Ausgabe</button>
+<div class="expenses-container">
+  
+  <div class="header">
+    <div class="header-text">
+      <h1>Ausgaben verwalten</h1>
+      <p>Durchsuchen und filtern Sie Ihre Ausgabenhistorie</p>
+    </div>
+    
+    <button class="btn-primary" (click)="isDialogOpen = true">
+      <span class="material-icons-outlined">add</span>
+      Neue Ausgabe
+    </button>
+  </div>
 
-    <app-expense-dialog 
-        [isOpen]="isDialogOpen" 
-        (closeDialog)="isDialogOpen = false"
-        (saveExpense)="onSaveExpense($event)"> </app-expense-dialog>
+  <div class="card filter-card">
+    <div class="filter-header">
+      <span class="material-icons-outlined">filter_alt</span>
+      <h3>Suchen & Filtern</h3>
+    </div>
+
+    <div class="search-wrapper">
+      <span class="material-icons-outlined">search</span>
+      <input type="text" placeholder="Händler, Beschreibung oder Tags durchsuchen...">
+    </div>
+
+    <div class="filter-row">
+      
+      <div class="filter-item">
+        <label><span class="material-icons-outlined">sell</span> Kategorie</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleDropdown('cat')">
+            @if (selectedCategoryObject?.color && selectedCategoryObject.color !== 'transparent') {
+              <span class="dot" [style.background-color]="selectedCategoryObject.color"></span>
+            }
+            <span class="selected-text">{{ selectedCategory }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+
+          @if (isCategoryOpen) {
+            <div class="dropdown-list">
+              @for (cat of categories; track cat.name) {
+                <div class="dropdown-item" (click)="selectItem('cat', cat)">
+                  @if (cat.color !== 'transparent') {
+                    <span class="dot" [style.background-color]="cat.color"></span>
+                  }
+                  <span class="cat-name">{{ cat.name }}</span>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="filter-item">
+        <label><span class="material-icons-outlined">calendar_today</span> Monat</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleDropdown('month')">
+            <span class="selected-text">{{ selectedMonth }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+          
+          @if (isMonthOpen) {
+            <div class="dropdown-list">
+              @for (m of months; track m) {
+                <div class="dropdown-item" (click)="selectItem('month', m)">
+                  {{ m }}
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="filter-item">
+        <label><span class="material-icons-outlined">tune</span> Typ</label>
+        <div class="custom-dropdown">
+          <div class="dropdown-selected" (click)="toggleDropdown('type')">
+            <span class="selected-text">{{ selectedType }}</span>
+            <span class="material-icons-outlined">expand_more</span>
+          </div>
+          
+          @if (isTypeOpen) {
+            <div class="dropdown-list">
+              @for (t of types; track t) {
+                <div class="dropdown-item" (click)="selectItem('type', t)">
+                  {{ t }}
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card empty-card">
+    <div class="empty-content">
+      <span class="material-icons-outlined mailbox-icon">inventory_2</span>
+      <p>Noch keine Ausgaben vorhanden</p>
+    </div>
+  </div>
+
+  <app-expense-dialog 
+      [isOpen]="isDialogOpen" 
+      (closeDialog)="isDialogOpen = false"
+      (saveExpense)="onSaveExpense($event)">
+  </app-expense-dialog>
+
 </div>

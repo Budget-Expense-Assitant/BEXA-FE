@@ -1,0 +1,203 @@
+.reports-container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  h1 { font-size: 28px; font-weight: 700; color: #1A1D1F; margin: 0; }
+  p { color: #6F767E; font-size: 14px; margin-top: 4px; }
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  
+  .tab-btn {
+    border: none;
+    background: #F4F4F4;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6F767E;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &.active { 
+      background: white; 
+      color: #1A1D1F; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+    }
+    &:hover:not(.active) { background: #EFEFEF; }
+  }
+}
+
+.main-chart-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid #EFEFEF;
+  margin-bottom: 25px;
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #5D5CDE;
+      h3 { color: #1A1D1F; font-size: 16px; margin: 0; }
+    }
+  }
+}
+
+.pill-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F4F4F4;
+  padding: 4px;
+  border-radius: 12px;
+
+  .calendar-icon { font-size: 18px; color: #6F767E; margin: 0 8px; }
+
+  .pill {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6F767E;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &.active { 
+      background: #5D5CDE; 
+      color: white; 
+      box-shadow: 0 2px 6px rgba(93, 92, 222, 0.3);
+    }
+  }
+}
+
+.two-row-chart-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 30px;
+  animation: fadeIn 0.5s ease-out;
+
+  .chart-row {
+    .row-label {
+      color: #6F767E;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-left: 10px;
+      border-left: 3px solid #5D5CDE;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.single-chart-wrapper {
+  animation: fadeIn 0.5s ease-out;
+  margin-bottom: 30px;
+  
+  .row-label {
+    color: #6F767E;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.stats-summary {
+  margin-top: 20px;
+  padding: 16px 24px;
+  background-color: #F8F9FB;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #F4F4F4;
+    border-color: #EFEFEF;
+    transform: translateY(-2px);
+  }
+
+  .label { color: #6F767E; font-size: 14px; font-weight: 500; }
+  .value-display {
+    font-weight: 700;
+    font-size: 20px;
+    &.positive { color: #2ecc71; }
+    &.negative { color: #FF6B6B; }
+  }
+  .hint { color: #9A9FA5; font-size: 11px; font-style: italic; }
+}
+
+.empty-state {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #9A9FA5;
+  animation: fadeIn 0.3s ease-in;
+
+  .placeholder-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
+  .main-msg { color: #1A1D1F; font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+  .sub-msg { font-size: 14px; }
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  .mini-chart-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid #EFEFEF;
+    min-height: 300px;
+    
+    h3 { font-size: 15px; font-weight: 600; color: #1A1D1F; margin-bottom: 20px; }
+    .mini-placeholder {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9A9FA5;
+      font-size: 14px;
+      background: #F9F9F9;
+      border-radius: 12px;
+      border: 1px dashed #E0E0E0;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

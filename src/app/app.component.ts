@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +8,13 @@ import { SidebarComponent } from './core/components/sidebar/sidebar.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  
+  constructor(private router: Router) {}
+
+  showSidebar(): boolean {
+    const hiddenRoutes = ['/login', '/register'];
+
+    return !hiddenRoutes.includes(this.router.url);
+  }
+}

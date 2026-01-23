@@ -1,0 +1,50 @@
+<div class="savings-container">
+  <div class="header">
+    <div class="header-text">
+      <h1>Sparplaner</h1>
+      <p>Definieren Sie Ihre finanziellen Ziele</p>
+    </div>
+    <button class="btn-primary" (click)="openNewGoalModal()">
+      <span class="material-icons-outlined">add</span>
+      Neues Sparziel
+    </button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="card stats-card">
+      <div class="card-content">
+        <div class="info">
+          <p class="label">Gesamt Erspartes</p>
+          <h2 class="amount blue">{{ totalSaved | number:'1.2-2' }} €</h2>
+        </div>
+        <span class="material-icons-outlined icon blue-bg">track_changes</span>
+      </div>
+    </div>
+
+    <div class="card stats-card">
+      <div class="card-content">
+        <div class="info">
+          <p class="label">Gesamtziel</p>
+          <h2 class="amount purple">{{ totalGoal | number:'1.2-2' }} €</h2>
+        </div>
+        <span class="material-icons-outlined icon purple-bg">trending_up</span>
+      </div>
+    </div>
+
+    <div class="card stats-card">
+      <div class="card-content">
+        <div class="info">
+          <p class="label">Aktive Ziele</p>
+          <h2 class="amount green">{{ activeGoalsCount }}</h2>
+        </div>
+        <span class="material-icons-outlined icon green-bg">event_available</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card empty-card" *ngIf="savingsGoals.length === 0">
+    <div class="empty-content">
+      <p>Noch keine Sparziele vorhanden</p>
+    </div>
+  </div>
+</div>

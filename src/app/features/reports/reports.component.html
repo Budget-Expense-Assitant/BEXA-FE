@@ -1,0 +1,106 @@
+<div class="reports-container">
+  <div class="header">
+    <div class="header-text">
+      <h1>Auswertungen</h1>
+      <p>Grafische Übersicht Ihrer Finanzen</p>
+    </div>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'Übersicht'" (click)="setTab('Übersicht')">Übersicht</button>
+    <button class="tab-btn" [class.active]="activeTab === 'Kategorien'" (click)="setTab('Kategorien')">Kategorien</button>
+    <button class="tab-btn" [class.active]="activeTab === 'Trends'" (click)="setTab('Trends')">Trends</button>
+  </div>
+
+  <div class="card main-chart-card">
+    <div class="chart-header">
+      <div class="title">
+        <span class="material-icons-outlined">calendar_view_month</span>
+        <h3>{{ title }}</h3>
+      </div>
+      <div class="pill-filters">
+        <span class="material-icons-outlined calendar-icon">calendar_today</span>
+        <button type="button" class="pill" 
+                (click)="setTimeframe('Laufendes Jahr')" 
+                [class.active]="activeTimeframe === 'Laufendes Jahr'">Laufendes Jahr</button>
+        <button type="button" class="pill" 
+                (click)="setTimeframe('Letzte 6 Monate')" 
+                [class.active]="activeTimeframe === 'Letzte 6 Monate'">Letzte 6 Monate</button>
+      </div>
+    </div>
+
+    <div class="reports-content-wrapper">
+      @if (activeTab === 'Übersicht') {
+        
+        <div class="tab-content-fade">
+          @if (activeTimeframe === 'Laufendes Jahr') {
+            <div class="two-row-chart-grid">
+              <div class="chart-row">
+                <h4 class="row-label">1. Halbjahr (Jan - Jun)</h4>
+                <div class="canvas-container">
+                  <canvas baseChart 
+                    [data]="chartDataH1" 
+                    [options]="chartOptions" 
+                    [type]="'bar'">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="chart-row">
+                <h4 class="row-label">2. Halbjahr (Jul - Dez)</h4>
+                <div class="canvas-container">
+                  <canvas baseChart 
+                    [data]="chartDataH2" 
+                    [options]="chartOptions" 
+                    [type]="'bar'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          } @else {
+            <div class="single-chart-wrapper">
+              <h4 class="row-label">Historischer Rückblick (6 Monate)</h4>
+              <div class="canvas-container" style="height: 400px;">
+                <canvas baseChart 
+                  [data]="barChartData" 
+                  [options]="chartOptions" 
+                  [type]="'bar'">
+                </canvas>
+              </div>
+            </div>
+          }
+
+          <div class="stats-summary" (click)="toggleLabelMode()" title="Ansicht wechseln">
+            <span class="label">Netto-Resultat ({{ activeTimeframe }}):</span>
+            <div class="value-display" [ngClass]="{'positive': balance >= 0, 'negative': balance < 0}">
+              @if (!showPercentage) {
+                <span>{{ balance | currency:'EUR':'symbol':'1.2-2':'de-DE' }}</span>
+              } @else {
+                <span>{{ savingsRate | number:'1.1-2':'de-DE' }}% Sparquote</span>
+              }
+            </div>
+            <small class="hint">(Klicken für %)</small>
+          </div>
+        </div>
+
+      } @else {
+        <div class="empty-state">
+          <span class="material-icons-outlined placeholder-icon">bar_chart</span>
+          <p class="main-msg">Keine Daten für "{{ activeTab }}" verfügbar</p>
+          <p class="sub-msg">In diesem Modul werden bald die {{ activeTab }} visualisiert.</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="bottom-grid">
+    <div class="card mini-chart-card">
+      <h3>Einnahmen vs. Ausgaben (Detail)</h3>
+      <div class="mini-placeholder">Hier folgen Detailanalysen...</div>
+    </div>
+    <div class="card mini-chart-card">
+      <h3>Fixe vs. Variable Ausgaben</h3>
+      <div class="mini-placeholder">Hier folgen Detailanalysen...</div>
+    </div>
+  </div>
+</div>
